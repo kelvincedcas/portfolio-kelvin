@@ -60,11 +60,16 @@ export const Contact = () => {
 
   const handleChange = (
     event:
-      | React.ChangeEvent<HTMLInputElement, HTMLInputElement>
-      | React.ChangeEvent<HTMLTextAreaElement, HTMLTextAreaElement>,
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>,
   ) => {
+    const { name, value } = event.target;
+
     setFormSubmitedd(false);
-    setFormData({ ...formData, [event.target.name]: event.target.value });
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -94,8 +99,8 @@ export const Contact = () => {
         throw new Error(data.error);
       }
 
-      toast.success(t.sonner.successfulMessage);
       setFormData({ name: '', email: '', subject: '', message: '' });
+      toast.success(t.sonner.successfulMessage);
     } catch (error) {
       toast.error(
         error instanceof Error ? error.message : t.sonner.errorMessage,
