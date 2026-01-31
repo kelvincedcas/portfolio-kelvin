@@ -1,0 +1,273 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@300;400;500;600;700&display=swap');
+
+/* =====================================================
+   DARK VARIANT
+===================================================== */
+@custom-variant dark (&:is(.dark *));
+
+/* =====================================================
+   THEME (Tailwind v4)
+===================================================== */
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  --font-display: 'Sora', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+/* =====================================================
+   ROOT (Light)
+===================================================== */
+:root {
+  --radius: 1rem;
+
+  --background: hsl(220 20% 97%);
+  --foreground: hsl(220 25% 8%);
+
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(220 25% 8%);
+
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(220 25% 8%);
+
+  --primary: hsl(220 90% 56%);
+  --primary-foreground: hsl(0 0% 100%);
+
+  --secondary: hsl(220 15% 92%);
+  --secondary-foreground: hsl(220 25% 8%);
+
+  --muted: hsl(220 15% 94%);
+  --muted-foreground: hsl(220 10% 45%);
+
+  --accent: hsl(340 75% 55%);
+  --accent-foreground: hsl(0 0% 100%);
+
+  --destructive: hsl(0 84% 60%);
+  --border: hsl(220 15% 90%);
+  --input: hsl(220 15% 90%);
+  --ring: hsl(220 90% 56%);
+
+  --shadow-soft: 0 4px 20px -4px hsl(220 25% 8% / 0.06);
+  --shadow-card: 0 8px 40px -8px hsl(220 25% 8% / 0.1);
+  --shadow-hover: 0 20px 60px -15px hsl(220 25% 8% / 0.15);
+  --shadow-glow: 0 0 60px -10px hsl(220 90% 56% / 0.3);
+
+  --gradient-primary: linear-gradient(
+    135deg,
+    hsl(220 90% 56%) 0%,
+    hsl(260 80% 60%) 50%,
+    hsl(340 75% 55%) 100%
+  );
+}
+
+/* =====================================================
+   DARK MODE
+===================================================== */
+.dark {
+  --background: hsl(220 25% 6%);
+  --foreground: hsl(220 15% 95%);
+
+  --card: hsl(220 25% 10%);
+  --card-foreground: hsl(220 15% 95%);
+
+  --primary: hsl(220 90% 60%);
+  --primary-foreground: hsl(220 25% 6%);
+
+  --secondary: hsl(220 20% 15%);
+  --secondary-foreground: hsl(220 15% 95%);
+
+  --muted: hsl(220 20% 18%);
+  --muted-foreground: hsl(220 10% 55%);
+
+  --border: hsl(220 20% 18%);
+  --input: hsl(220 20% 18%);
+  --ring: hsl(220 90% 60%);
+
+  --shadow-soft: 0 4px 20px -4px hsl(0 0% 0% / 0.4);
+  --shadow-card: 0 8px 40px -8px hsl(0 0% 0% / 0.5);
+  --shadow-hover: 0 20px 60px -15px hsl(0 0% 0% / 0.6);
+  --shadow-glow: 0 0 60px -10px hsl(220 90% 60% / 0.4);
+}
+
+/* =====================================================
+   BASE
+===================================================== */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: theme(--font-body);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: theme(--font-display);
+  }
+}
+
+/* =====================================================
+   COMPONENTS
+===================================================== */
+@layer components {
+  .gradient-text {
+    background-image: var(--gradient-primary);
+    background-size: 300% 300%;
+    animation: gradientMove 6s ease infinite;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  @keyframes gradientMove {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-xl border border-border/50;
+    box-shadow: var(--shadow-card);
+  }
+
+  .glow-effect {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .hover-lift {
+    @apply transition-all duration-500 ease-out;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .decorative-blob {
+    @apply absolute rounded-full blur-3xl opacity-30 pointer-events-none;
+  }
+
+  .section-padding {
+    @apply py-24 md:py-32 lg:py-40 px-6;
+  }
+
+  .text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float 6s ease-in-out 2s infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(2deg);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--primary) / 0.1),
+      transparent
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee 25s linear infinite;
+  }
+
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+
+  .hover-instagram:hover {
+    background: linear-gradient(45deg, #fc2787, #dd2a7b, #8134af, #515bd4);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
