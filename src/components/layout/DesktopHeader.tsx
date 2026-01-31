@@ -116,14 +116,7 @@ export const DesktopHeader = () => {
         <div className="flex items-center gap-2">
           <button
             onClick={() => setLanguage(language === 'en' ? 'es' : 'en')}
-            className="
-    flex items-center gap-1.5
-    px-3 py-2
-    rounded-xl
-    bg-secondary/50
-    hover:bg-secondary
-    transition-colors
-  "
+            className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-secondary/50 hover:bg-secondary transition-colors"
             aria-label="Toggle language"
           >
             <Globe className="w-4 h-4" />
@@ -133,7 +126,7 @@ export const DesktopHeader = () => {
           </button>
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-xl bg-secondary/50"
+            className="p-2 rounded-xl bg-secondary/50 hover:bg-secondary transition-colors"
             aria-label="Toggle theme"
           >
             {theme === 'dark' ? (

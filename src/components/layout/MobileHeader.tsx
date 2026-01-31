@@ -50,7 +50,7 @@ export const MobileHeader = () => {
           {/* Theme */}
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-xl bg-secondary/50"
+            className="p-2 rounded-xl bg-secondary/50 hover:bg-secondary transition-colors"
             aria-label="Toggle theme"
           >
             {theme === 'dark' ? (
@@ -63,7 +63,7 @@ export const MobileHeader = () => {
           {/* Menu */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="w-10 h-10 flex items-center justify-center rounded-xl bg-secondary"
+            className="w-10 h-10 flex items-center justify-center rounded-xl bg-secondary/60 hover:bg-secondary transition-colors"
             aria-label="Toggle menu"
           >
             {isMenuOpen ? (
@@ -83,13 +83,7 @@ export const MobileHeader = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
-            className="
-              bg-background/95
-              backdrop-blur-xl
-              border-t border-border
-              overflow-hidden
-              mt-3
-            "
+            className="bg-background/95 backdrop-blur-xl border-t border-border overflow-hidden mt-3"
           >
             <ul className="px-6 py-6 space-y-2">
               {navItems.map((item, index) => (
@@ -101,7 +95,16 @@ export const MobileHeader = () => {
                 >
                   <a
                     href={item.href}
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsMenuOpen(false);
+                      setTimeout(() => {
+                        const target = document.querySelector(item.href);
+                        if (target) {
+                          target.scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }, 80);
+                    }}
                     className="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-secondary transition-colors"
                   >
                     {item.label}
@@ -118,7 +121,16 @@ export const MobileHeader = () => {
               >
                 <a
                   href="#contact"
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsMenuOpen(false);
+
+                    setTimeout(() => {
+                      document
+                        .querySelector('#contact')
+                        ?.scrollIntoView({ behavior: 'smooth' });
+                    }, 80);
+                  }}
                   className="
                     block w-full px-4 py-3 rounded-xl
                     text-center font-medium text-primary-foreground
