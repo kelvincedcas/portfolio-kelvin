@@ -13,6 +13,7 @@ import { motion, useInView, AnimatePresence } from 'motion/react';
 import { useLanguage } from '@/hooks/useLanguage';
 
 import { toast } from 'sonner';
+import { Spinner } from '../ui/spinner';
 
 const socialLinks = [
   {
@@ -55,35 +56,52 @@ export const Contact = () => {
   });
   const [formValid, setFormValid] = useState(false);
   const [formSubmitedd, setFormSubmitedd] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement, HTMLInputElement>,
+    event:
+      | React.ChangeEvent<HTMLInputElement, HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement, HTMLTextAreaElement>,
   ) => {
     setFormSubmitedd(false);
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = async (event: React.SubmitEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setFormSubmitedd(true);
+
     const { name, email, subject, message } = formData;
-    if (!name || !email || !subject || !message) {
+
+    if (!name.trim() || !email.trim() || !subject.trim() || !message.trim()) {
       setFormValid(false);
       return;
     }
-    setFormValid(true);
-    const res = await fetch('api/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
-    });
-    const data: { success?: boolean; error?: string } = await res.json();
 
-    if (data.success) {
+    setFormValid(true);
+    setIsLoading(true);
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data: { success?: boolean; error?: string } = await res.json();
+
+      if (!res.ok || !data.success) {
+        throw new Error(data.error);
+      }
+
       toast.success(t.sonner.successfulMessage);
       setFormData({ name: '', email: '', subject: '', message: '' });
-    } else {
-      toast.error(data.error ?? t.sonner.errorMessage);
+    } catch (error) {
+      toast.error(
+        error instanceof Error ? error.message : t.sonner.errorMessage,
+      );
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -168,7 +186,7 @@ export const Contact = () => {
                     <input
                       name="email"
                       type="email"
-                      id="email"
+                      onChange={handleChange}
                       placeholder={t.contact.emailPlaceholder}
                       className="w-full px-4 py-3 rounded-xl bg-secondary/50 border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                     />
@@ -185,7 +203,7 @@ export const Contact = () => {
                   <input
                     name="subject"
                     type="text"
-                    id="subject"
+                    onChange={handleChange}
                     placeholder={t.contact.subjectPlaceholder}
                     className="w-full px-4 py-3 rounded-xl bg-secondary/50 border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                   />
@@ -200,7 +218,7 @@ export const Contact = () => {
                   </label>
                   <textarea
                     name="message"
-                    id="message"
+                    onChange={handleChange}
                     rows={5}
                     placeholder={t.contact.messagePlaceholder}
                     className="w-full px-4 py-3 rounded-xl bg-secondary/50 border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none"
@@ -211,9 +229,17 @@ export const Contact = () => {
                   type="submit"
                   className="w-full py-4 rounded-xl font-medium text-primary-foreground flex items-center justify-center gap-2 hover:opacity-90 transition-opacity cursor-pointer"
                   style={{ background: 'var(--gradient-primary)' }}
+                  disabled={isLoading}
                 >
-                  {t.contact.sendButton}
-                  <Send className="w-4 h-4" />
+                  {isLoading ? (
+                    <>
+                      <Spinner /> {t.contact.spinnerButton}
+                    </>
+                  ) : (
+                    <>
+                      {t.contact.sendButton} <Send className="w-4 h-4" />
+                    </>
+                  )}
                 </button>
               </form>
             </div>

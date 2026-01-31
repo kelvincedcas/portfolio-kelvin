@@ -6,7 +6,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 const projectTags = [
   ['React', 'TypeScript', 'Tailwind', 'Vercel serverless', 'Shadcn'],
   ['React', 'Express.js', 'MongoDB', 'Tailwind', 'Resend'],
-  ['React', 'Shadcn', 'TanStack', 'Tailwind', 'Zustand'],
+  ['React', 'Shadcn', 'Motion', 'Tailwind', 'Vercel serverless'],
   ['React', 'Flowbite', 'Firebase'],
   ['React', 'Expo', 'Firebase', 'HealthKit'],
   ['Vue.js', 'Web3.js', 'CoinGecko API', 'Chart.js'],
@@ -89,9 +89,8 @@ export const Projects = () => {
         {/* Featured Projects */}
         <div className="space-y-8 mb-20">
           {featuredProjects.map((project, index) => (
-            <div className="group">
+            <div className="group" key={project.title}>
               <motion.article
-                key={project.title}
                 initial={{ opacity: 0, y: 50 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.3 + index * 0.15 }}
@@ -112,7 +111,7 @@ export const Projects = () => {
                         <img
                           src={project.imageURL}
                           alt={project.title}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover overflow-hidden"
                         />
                         {/* Hover Overlay */}
                         <div className="absolute inset-0 bg-foreground/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
@@ -218,7 +217,7 @@ export const Projects = () => {
                     <img
                       src={project.imageURL}
                       alt={project.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover overflow-hidden"
                     />
                   </div>
                 </div>

@@ -93,6 +93,7 @@ export interface Translations {
     messageLabel: string;
     messagePlaceholder: string;
     sendButton: string;
+    spinnerButton: string;
     emailTitle: string;
     locationTitle: string;
     location: string;

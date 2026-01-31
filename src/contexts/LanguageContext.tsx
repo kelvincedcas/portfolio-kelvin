@@ -194,7 +194,7 @@ const translations: Record<Language, Translations> = {
           description:
             'A modern frontend-focused portfolio that showcases my profile through clean, intuitive, and visually engaging interfaces, focused on delivering an optimal user experience. Email delivery is handled through a custom function running on Vercel Serverless.',
           imageURL: '/images/portfolio.png',
-          projectURL: 'https://calendarapp-kelvindev.netlify.app/auth/login',
+          projectURL: 'https://portfolio-kelvin-vert.vercel.app/',
           gitHubURL: 'https://github.com/kelvincedcas/portfolio-kelvin',
         },
         {
@@ -254,6 +254,7 @@ const translations: Record<Language, Translations> = {
       messageLabel: 'Message',
       messagePlaceholder: 'Tell me about your project...',
       sendButton: 'Send Message',
+      spinnerButton: 'Sending Message...',
       emailTitle: 'Email',
       locationTitle: 'Location',
       location: 'Bahía de Caráquez, Ecuador',
@@ -521,6 +522,7 @@ const translations: Record<Language, Translations> = {
       messageLabel: 'Mensaje',
       messagePlaceholder: 'Cuéntame sobre tu proyecto...',
       sendButton: 'Enviar Mensaje',
+      spinnerButton: 'Enviando Mensaje...',
       emailTitle: 'Correo',
       locationTitle: 'Ubicación',
       location: 'Bahía de Caráquez, Ecuador',
