@@ -166,7 +166,7 @@ const translations: Record<Language, Translations> = {
           subtitle: 'Full-Stack Development',
           description:
             "A modern website designed to track the progress of a local League of Legends tournament step by step. It connects to Riot's official API and obtains real-time player data.",
-          imageURL: '/images/soloQ.png',
+          imageURL: '/images/soloQ.webp',
           projectURL: 'https://www.soloq2026.lol/',
           gitHubURL: 'https://github.com/kelvincedcas/lol-tournament',
         },
@@ -175,7 +175,7 @@ const translations: Record<Language, Translations> = {
           subtitle: 'Full-Stack Development',
           description:
             'A full-stack veterinary patient management system built with the MERN stack, featuring authentication, email-based password recovery, account confirmation, and more.',
-          imageURL: '/images/APV_Mern.png',
+          imageURL: '/images/APV_Mern.webp',
           projectURL: 'https://apv-mern-kelvindev.netlify.app/',
           gitHubURL: 'https://github.com/kelvincedcas/apv_frontend_deploy',
         },
@@ -184,7 +184,7 @@ const translations: Record<Language, Translations> = {
         //   subtitle: 'Frontend Development',
         //   description:
         //     'A modern and scalable e-commerce solution that offers inventory management through an administrative dashboard, query parameter handling, and utilizes Zustand, etc.',
-        //   imageURL: '/images/APV_Mern.png',
+        //   imageURL: '/images/APV_Mern.webp',
         //   projectURL: 'https://apv-mern-kelvindev.netlify.app/',
         //   gitHubURL: 'https://github.com/kelvincedcas/apv_frontend_deploy',
         // },
@@ -193,7 +193,7 @@ const translations: Record<Language, Translations> = {
           subtitle: 'Website',
           description:
             'A modern frontend-focused portfolio that showcases my profile through clean, intuitive, and visually engaging interfaces, focused on delivering an optimal user experience. Email delivery is handled through a custom function running on Vercel Serverless.',
-          imageURL: '/images/portfolio.png',
+          imageURL: '/images/portfolio.webp',
           projectURL: 'https://portfolio-kelvin-vert.vercel.app/',
           gitHubURL: 'https://github.com/kelvincedcas/portfolio-kelvin',
         },
@@ -202,7 +202,7 @@ const translations: Record<Language, Translations> = {
           subtitle: 'Full-Stack Development',
           description:
             'A modern application designed to help you organize your events and pending tasks. Calendar App is built using the MERN stack and leverages libraries such as Flowbite React, Schedule Calendar, and more.',
-          imageURL: '/images/calendarApp.png',
+          imageURL: '/images/calendarApp.webp',
           projectURL: 'https://calendarapp-kelvindev.netlify.app/auth/login',
           gitHubURL: 'https://github.com/kelvincedcas/CalendarApp-Frontend',
         },
@@ -211,7 +211,7 @@ const translations: Record<Language, Translations> = {
           subtitle: 'Full-Stack Development',
           description:
             'A modern application designed to keep track of everything you need to note on a daily basis. The backend uses Firebase services for authentication and data storage.',
-          imageURL: '/images/journal_App.png',
+          imageURL: '/images/journal_App.webp',
           projectURL: 'https://journal-app-kelvindev.netlify.app/auth/login',
           gitHubURL: 'https://github.com/kelvincedcas/react_journal_app',
         },
@@ -220,7 +220,7 @@ const translations: Record<Language, Translations> = {
           subtitle: 'Figma prototype',
           description:
             'A complete redesign of all user interfaces for the Elize CL educational assistant app. The project was developed using Figma, featuring a fully interactive prototype that demonstrates the complete app flow, along with the use of informative and preventive modal dialogs.',
-          imageURL: '/images/figma_redesign.png',
+          imageURL: '/images/figma_redesign.webp',
           projectURL:
             'https://www.figma.com/proto/y5tC3ZrgcP6AhSXCiJsl6V/Elize-UI%2FUX?node-id=0-1&t=Julo5qNGsSdzCRx0-1',
           gitHubURL:
@@ -231,7 +231,7 @@ const translations: Record<Language, Translations> = {
           subtitle: 'Frontend Development',
           description:
             'A small practice project that consumes the OpenWeather API. It requests the user’s location using the native JavaScript Geolocation API, sends the latitude and longitude, and retrieves relevant weather information for the user’s location.',
-          imageURL: '/images/weather_App.png',
+          imageURL: '/images/weather_App.webp',
           projectURL: 'https://weatherapp-kelvin.netlify.app/',
           gitHubURL: '',
         },
@@ -443,7 +443,7 @@ const translations: Record<Language, Translations> = {
           subtitle: 'Desarrollo Full-Stack',
           description:
             'Un sitio web moderno diseñado para seguir paso a paso el progreso de un torneo local de League of Legends. Se conecta con la API oficial de Riot y obtiene datos de jugadores en tiempo real.',
-          imageURL: '/images/soloQ.png',
+          imageURL: '/images/soloQ.webp',
           projectURL: 'https://www.soloq2026.lol/',
           gitHubURL: 'https://github.com/kelvincedcas/lol-tournament',
         },
@@ -452,7 +452,7 @@ const translations: Record<Language, Translations> = {
           subtitle: 'Desarrollo Full-Stack',
           description:
             'Un sistema completo de gestión de pacientes veterinarios desarrollado con el stack MERN, que incluye autenticación, recuperación de contraseña por correo, confirmación de cuentas y más.',
-          imageURL: '/images/APV_Mern.png',
+          imageURL: '/images/APV_Mern.webp',
           projectURL: 'https://apv-mern-kelvindev.netlify.app/',
           gitHubURL: 'https://github.com/kelvincedcas/apv_frontend_deploy',
         },
@@ -461,7 +461,7 @@ const translations: Record<Language, Translations> = {
           subtitle: 'Desarrollo Frontend',
           description:
             'Una solución de comercio electrónico moderna y escalable que ofrece gestión de inventario mediante un panel administrativo, manejo de parámetros de consulta y uso de Zustand, entre otros.',
-          imageURL: '/images/APV_Mern.png',
+          imageURL: '/images/APV_Mern.webp',
           projectURL: 'https://apv-mern-kelvindev.netlify.app/',
           gitHubURL: 'https://github.com/kelvincedcas/apv_frontend_deploy',
         },
@@ -470,7 +470,7 @@ const translations: Record<Language, Translations> = {
           subtitle: 'Desarrollo Full-Stack',
           description:
             'Una aplicación moderna diseñada para ayudarte a organizar tus eventos y tareas pendientes. Calendar App está construida con el stack MERN y utiliza librerías como Flowbite React, Schedule Calendar y más.',
-          imageURL: '/images/calendarApp.png',
+          imageURL: '/images/calendarApp.webp',
           projectURL: 'https://calendarapp-kelvindev.netlify.app/auth/login',
           gitHubURL: 'https://github.com/kelvincedcas/CalendarApp-Frontend',
         },
@@ -479,7 +479,7 @@ const translations: Record<Language, Translations> = {
           subtitle: 'Desarrollo Full-Stack',
           description:
             'Una aplicación moderna diseñada para llevar un registro de todo lo que necesitas anotar a diario. El backend utiliza servicios de Firebase para autenticación y almacenamiento de datos.',
-          imageURL: '/images/journal_App.png',
+          imageURL: '/images/journal_App.webp',
           projectURL: 'https://journal-app-kelvindev.netlify.app/auth/login',
           gitHubURL: 'https://github.com/kelvincedcas/react_journal_app',
         },
@@ -488,7 +488,7 @@ const translations: Record<Language, Translations> = {
           subtitle: 'Prototipo en Figma',
           description:
             'Un rediseño completo de todas las interfaces de usuario de la app del asistente educativo Elize CL. El proyecto fue desarrollado en Figma, con un prototipo totalmente interactivo que muestra el flujo completo de la aplicación e incluye modales informativos y preventivos.',
-          imageURL: '/images/figma_redesign.png',
+          imageURL: '/images/figma_redesign.webp',
           projectURL:
             'https://www.figma.com/proto/y5tC3ZrgcP6AhSXCiJsl6V/Elize-UI%2FUX',
           gitHubURL:
@@ -499,7 +499,7 @@ const translations: Record<Language, Translations> = {
           subtitle: 'Desarrollo Frontend',
           description:
             'Un pequeño proyecto de práctica que consume la API de OpenWeather. Utiliza la API nativa de geolocalización de JavaScript para obtener la ubicación del usuario y mostrar información relevante del clima según la latitud y longitud.',
-          imageURL: '/images/weather_App.png',
+          imageURL: '/images/weather_App.webp',
           projectURL: 'https://weatherapp-kelvin.netlify.app/',
           gitHubURL: '',
         },

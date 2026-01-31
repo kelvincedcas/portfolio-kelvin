@@ -5,8 +5,11 @@ import { About } from './components/sections/About';
 import { Contact } from './components/sections/Contact';
 import { Education } from './components/sections/Education';
 import { Hero } from './components/sections/Hero';
-import { Projects } from './components/sections/Projects';
-import { Skills } from './components/sections/Skills';
+
+import { lazy, Suspense } from 'react';
+
+const Projects = lazy(() => import('./components/sections/Projects'));
+const Skills = lazy(() => import('./components/sections/Skills'));
 
 export const PortfolioKelvin = () => {
   return (
@@ -16,9 +19,13 @@ export const PortfolioKelvin = () => {
       <main>
         <Hero />
         <About />
-        <Skills />
+        <Suspense fallback={null}>
+          <Skills />
+        </Suspense>
         <Education />
-        <Projects />
+        <Suspense fallback={null}>
+          <Projects />
+        </Suspense>
         <Contact />
       </main>
       <Footer />

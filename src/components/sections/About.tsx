@@ -50,7 +50,9 @@ export const About = () => {
                 <div className="text-center p-8">
                   <div className="size-60 mx-auto mb-6 rounded-full bg-linear-to-br from-primary/20 to-accent/20 flex items-center justify-center border-4 border-background shadow-xl overflow-hidden">
                     <img
-                      src="/images/profile.png"
+                      loading="lazy"
+                      decoding="async"
+                      src="/images/profile.webp"
                       alt="profile"
                       className="object-cover"
                     />
