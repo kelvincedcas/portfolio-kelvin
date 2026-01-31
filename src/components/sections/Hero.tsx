@@ -4,13 +4,20 @@ import { motion } from 'motion/react';
 import { useIsMobile } from '@/hooks/useIsMobile';
 
 /**
- * Animation helpers
- * Mobile: micro-move + short duration
- * Desktop: stronger move + longer duration
+ * SAFE animation presets
+ * Only opacity + transform
  */
 const fadeUp = (isMobile: boolean) => ({
-  initial: { opacity: 0, y: isMobile ? 8 : 24 },
-  animate: { opacity: 1, y: 0 },
+  initial: {
+    opacity: 0,
+    y: isMobile ? 12 : 28,
+    scale: isMobile ? 0.97 : 1,
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+  },
 });
 
 const fade = {
@@ -68,8 +75,8 @@ export const Hero = () => {
         <motion.div
           {...fadeUp(isMobile)}
           transition={{
-            duration: isMobile ? 0.35 : 0.6,
-            ease: 'easeOut',
+            duration: isMobile ? 0.45 : 0.7,
+            ease: [0.22, 1, 0.36, 1],
           }}
           className="inline-flex items-center gap-2 px-4 py-2 bg-card rounded-full border border-border mb-8 shadow-soft"
         >
@@ -81,9 +88,9 @@ export const Hero = () => {
         <motion.h1
           {...fadeUp(isMobile)}
           transition={{
-            duration: isMobile ? 0.45 : 0.8,
-            delay: isMobile ? 0.05 : 0.2,
-            ease: 'easeOut',
+            duration: isMobile ? 0.55 : 0.9,
+            delay: isMobile ? 0.06 : 0.2,
+            ease: [0.22, 1, 0.36, 1],
           }}
           className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6"
         >
@@ -95,8 +102,8 @@ export const Hero = () => {
         <motion.div
           {...fade}
           transition={{
-            duration: isMobile ? 0.3 : 0.4,
-            delay: isMobile ? 0.1 : 0.3,
+            duration: isMobile ? 0.35 : 0.45,
+            delay: isMobile ? 0.12 : 0.3,
           }}
           className="flex flex-wrap items-center justify-center gap-3 mb-8"
         >
@@ -114,8 +121,8 @@ export const Hero = () => {
         <motion.p
           {...fade}
           transition={{
-            duration: isMobile ? 0.35 : 0.4,
-            delay: isMobile ? 0.15 : 0.4,
+            duration: isMobile ? 0.4 : 0.45,
+            delay: isMobile ? 0.18 : 0.4,
           }}
           className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed"
         >
@@ -126,8 +133,8 @@ export const Hero = () => {
         <motion.div
           {...fade}
           transition={{
-            duration: isMobile ? 0.35 : 0.4,
-            delay: isMobile ? 0.2 : 0.5,
+            duration: isMobile ? 0.4 : 0.45,
+            delay: isMobile ? 0.24 : 0.5,
           }}
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
@@ -155,8 +162,8 @@ export const Hero = () => {
         <motion.div
           {...fade}
           transition={{
-            duration: isMobile ? 0.35 : 0.4,
-            delay: isMobile ? 0.25 : 0.6,
+            duration: isMobile ? 0.4 : 0.45,
+            delay: isMobile ? 0.3 : 0.6,
           }}
           className="grid grid-cols-3 gap-8 max-w-lg mx-auto mt-20"
         >
