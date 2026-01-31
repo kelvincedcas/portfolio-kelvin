@@ -4,15 +4,11 @@ import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import type { Variants } from 'motion/react';
 
-/* =======================
-   Variants (optimizados)
-======================= */
-
 const container: Variants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.1, // ⬅️ menor carga
+      staggerChildren: 0.1,
     },
   },
 };
@@ -38,16 +34,24 @@ const scaleIn: Variants = {
 export const Hero = () => {
   const { t } = useLanguage();
   const [isMobile, setIsMobile] = useState(false);
+  const [blurLoaded, setBlurLoaded] = useState(false);
 
   useEffect(() => {
     setIsMobile(window.innerWidth < 768);
+
+    // Delay de blur para no congelar scroll en mobile
+    const timer = setTimeout(() => setBlurLoaded(true), 500);
+    return () => clearTimeout(timer);
   }, []);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center px-6 py-24 overflow-hidden">
-      {/* ================= Background ================= */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* Blobs (animados solo desktop) */}
+      {/* Background */}
+      <div
+        className={`absolute inset-0 pointer-events-none ${
+          blurLoaded ? 'backdrop-blur-xl' : ''
+        } transition-[backdrop-filter] duration-500`}
+      >
         <div className="decorative-blob w-150 h-150 bg-primary/20 -top-48 -right-48" />
         <div className="decorative-blob w-125 h-125 bg-accent/20 -bottom-32 -left-32" />
         <div className="decorative-blob w-75 h-75 bg-primary/10 top-1/3 left-1/4" />
@@ -78,7 +82,7 @@ export const Hero = () => {
         />
       </div>
 
-      {/* ================= Content ================= */}
+      {/* Content */}
       <motion.div
         variants={container}
         initial="hidden"
@@ -144,7 +148,6 @@ export const Hero = () => {
               <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
             </span>
           </a>
-
           <a
             href="#contact"
             className="inline-flex items-center justify-center px-8 py-4 font-medium rounded-xl border-2 border-border hover:border-primary/50 hover:bg-primary/5 transition-all"
