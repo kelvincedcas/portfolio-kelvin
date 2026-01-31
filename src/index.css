@@ -1,16 +1,9 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@300;400;500;600;700&display=swap');
 
-/* =====================================================
-   DARK VARIANT
-===================================================== */
 @custom-variant dark (&:is(.dark *));
 
-/* =====================================================
-   THEME (Tailwind v4)
-===================================================== */
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -41,9 +34,6 @@
   --color-ring: var(--ring);
 }
 
-/* =====================================================
-   ROOT (Light)
-===================================================== */
 :root {
   --radius: 1rem;
 
@@ -86,9 +76,6 @@
   );
 }
 
-/* =====================================================
-   DARK MODE
-===================================================== */
 .dark {
   --background: hsl(220 25% 6%);
   --foreground: hsl(220 15% 95%);
@@ -115,9 +102,6 @@
   --shadow-glow: 0 0 60px -10px hsl(220 90% 60% / 0.4);
 }
 
-/* =====================================================
-   BASE
-===================================================== */
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -138,9 +122,6 @@
   }
 }
 
-/* =====================================================
-   COMPONENTS
-===================================================== */
 @layer components {
   .gradient-text {
     background-image: var(--gradient-primary);

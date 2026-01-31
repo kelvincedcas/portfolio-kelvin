@@ -1,53 +1,73 @@
 import { ArrowDown, Sparkles } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { motion } from 'motion/react';
+import { useEffect, useState } from 'react';
 import type { Variants } from 'motion/react';
 
 /* =======================
-   Variants
+   Variants (optimizados)
 ======================= */
 
 const container: Variants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.2,
+      staggerChildren: 0.1, // ⬅️ menor carga
     },
   },
 };
 
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: 'easeOut' },
+    transition: { duration: 0.45, ease: 'easeOut' },
   },
 };
 
 const scaleIn: Variants = {
-  hidden: { opacity: 0, scale: 0.9 },
+  hidden: { opacity: 0, scale: 0.95 },
   visible: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.4, ease: 'easeOut' },
+    transition: { duration: 0.35, ease: 'easeOut' },
   },
 };
 
 export const Hero = () => {
   const { t } = useLanguage();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center px-6 py-24 overflow-hidden">
-      {/* Decorative Background */}
+      {/* ================= Background ================= */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Gradient Orbs */}
-        <div className="decorative-blob w-150 h-150 bg-primary/20 -top-48 -right-48 animate-float" />
-        <div className="decorative-blob w-125 h-125 bg-accent/20 -bottom-32 -left-32 animate-float-delayed" />
-        <div className="decorative-blob w-75 h-75 bg-primary/10 top-1/3 left-1/4 animate-pulse-slow" />
+        {/* Blobs (animados solo desktop) */}
+        <div className="decorative-blob w-150 h-150 bg-primary/20 -top-48 -right-48" />
+        <div className="decorative-blob w-125 h-125 bg-accent/20 -bottom-32 -left-32" />
+        <div className="decorative-blob w-75 h-75 bg-primary/10 top-1/3 left-1/4" />
 
-        {/* Grid Pattern */}
+        {!isMobile && (
+          <>
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 90, repeat: Infinity, ease: 'linear' }}
+              className="absolute top-20 right-20 w-32 h-32 border border-primary/10 rounded-full"
+            />
+            <motion.div
+              animate={{ rotate: -360 }}
+              transition={{ duration: 80, repeat: Infinity, ease: 'linear' }}
+              className="absolute bottom-32 left-20 w-24 h-24 border border-accent/10 rounded-2xl"
+            />
+          </>
+        )}
+
+        {/* Grid */}
         <div
           className="absolute inset-0 opacity-[0.02]"
           style={{
@@ -56,20 +76,9 @@ export const Hero = () => {
             backgroundSize: '60px 60px',
           }}
         />
-
-        {/* Floating Shapes */}
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 80, repeat: Infinity, ease: 'linear' }}
-          className="absolute top-20 right-20 w-32 h-32 border border-primary/10 rounded-full"
-        />
-        <motion.div
-          animate={{ rotate: -360 }}
-          transition={{ duration: 70, repeat: Infinity, ease: 'linear' }}
-          className="absolute bottom-32 left-20 w-24 h-24 border border-accent/10 rounded-2xl"
-        />
       </div>
 
+      {/* ================= Content ================= */}
       <motion.div
         variants={container}
         initial="hidden"
@@ -127,19 +136,18 @@ export const Hero = () => {
         >
           <a
             href="#projects"
-            className="group relative inline-flex items-center justify-center px-8 py-4 font-medium rounded-xl overflow-hidden transition-all duration-300"
+            className="group relative inline-flex items-center justify-center px-8 py-4 font-medium rounded-xl overflow-hidden"
             style={{ background: 'var(--gradient-primary)' }}
           >
             <span className="relative z-10 text-white flex items-center gap-2">
               {t.hero.exploreWork}
               <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
             </span>
-            <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors" />
           </a>
 
           <a
             href="#contact"
-            className="group inline-flex items-center justify-center px-8 py-4 font-medium rounded-xl border-2 border-border hover:border-primary/50 hover:bg-primary/5 transition-all duration-300"
+            className="inline-flex items-center justify-center px-8 py-4 font-medium rounded-xl border-2 border-border hover:border-primary/50 hover:bg-primary/5 transition-all"
           >
             {t.hero.letsConnect}
           </a>
@@ -160,31 +168,6 @@ export const Hero = () => {
               </div>
             </div>
           ))}
-        </motion.div>
-      </motion.div>
-
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 1.6 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2.2, repeat: Infinity }}
-          className="flex flex-col items-center gap-2 text-muted-foreground"
-        >
-          <span className="text-xs uppercase tracking-widest">
-            {t.hero.scroll}
-          </span>
-          <div className="w-6 h-10 border-2 border-muted-foreground/30 rounded-full flex justify-center pt-2">
-            <motion.div
-              animate={{ y: [0, 12, 0], opacity: [1, 0.3, 1] }}
-              transition={{ duration: 2.2, repeat: Infinity }}
-              className="w-1.5 h-1.5 bg-primary rounded-full"
-            />
-          </div>
         </motion.div>
       </motion.div>
     </section>
