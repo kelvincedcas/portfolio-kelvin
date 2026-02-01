@@ -107,13 +107,18 @@ export const Hero = () => {
           }}
           className="flex flex-wrap items-center justify-center gap-3 mb-8"
         >
-          {t.hero.roles.map((role) => (
-            <span
+          {t.hero.roles.map((role, index) => (
+            <motion.span
+              {...fade}
+              transition={{
+                duration: isMobile ? 0.35 : 0.45,
+                delay: isMobile ? index * 0.15 : index * 0.3,
+              }}
               key={role}
               className="px-4 py-2 bg-secondary rounded-full text-sm font-medium text-muted-foreground"
             >
               {role}
-            </span>
+            </motion.span>
           ))}
         </motion.div>
 
