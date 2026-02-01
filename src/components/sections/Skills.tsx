@@ -132,15 +132,14 @@ const Skills = () => {
 
                     <div className="h-2 bg-secondary rounded-full overflow-hidden">
                       <motion.div
-                        initial={{ scaleX: 0 }}
-                        whileInView={{ scaleX: 1 }}
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${skill.level}%` }}
                         viewport={{ once: true }}
                         transition={{
                           duration: 1,
                           ease: 'easeOut',
                         }}
                         style={{
-                          transformOrigin: 'left',
                           background: 'var(--gradient-primary)',
                         }}
                         className="h-full rounded-full"
