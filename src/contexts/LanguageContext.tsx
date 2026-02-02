@@ -105,7 +105,7 @@ const translations: Record<Language, Translations> = {
       title: 'Education &',
       titleHighlight: ' Learning Journey',
       formalEducation: 'Formal Education',
-      coursesTitle: 'Courses & Certifications',
+      coursesTitle: 'Continuous Learning & Professional Development',
       educationData: [
         {
           title: 'Computer Systems Engineer',
@@ -116,36 +116,57 @@ const translations: Record<Language, Translations> = {
           highlights: ['Web project for faculty'],
         },
       ],
-      coursesData: [
+      coursesCategories: [
         {
-          title: 'React expert',
-          platform: 'Dev/talles',
-          year: '2025',
+          category: 'Frontend Development',
+          courses: [
+            {
+              title: 'React expert',
+              platform: 'Dev/talles',
+              year: '2025',
+              description:
+                'Advanced React patterns, scalable component architecture, global state with Zustand and server state with TanStack Query in real-world applications.',
+            },
+
+            {
+              title: 'React with TypeScript - the complete guide',
+              platform: 'Udemy',
+              year: '2025',
+              description:
+                'Built strongly typed React applications using reusable components, strict typing, and global state management with Redux Toolkit.',
+            },
+            {
+              title: 'Modern JavaScript',
+              platform: 'Udemy',
+              year: '2024',
+              description:
+                'Deep understanding of modern JavaScript features (ES6+), asynchronous patterns, and clean coding practices.',
+            },
+          ],
         },
         {
-          title: 'React with TypeScript - the complete guide',
-          platform: 'Udemy',
-          year: '2025',
+          category: 'Full Stack Development',
+          courses: [
+            {
+              title: 'Full Stack Node.js - React - TypeScript, Express',
+              platform: 'Udemy',
+              year: '2025',
+              description:
+                'Developed full-stack applications with REST APIs, authentication, and database integration using modern JavaScript tooling.',
+            },
+          ],
         },
         {
-          title: 'Full Stack Node.js - React - TypeScript, Express',
-          platform: 'Udemy',
-          year: '2025',
-        },
-        {
-          title: 'Modern JavaScript',
-          platform: 'Udemy',
-          year: '2024',
-        },
-        {
-          title: 'UI/UX Design Specialization',
-          platform: 'Udemy',
-          year: '2023',
-        },
-        {
-          title: 'AWS Certified Developer Associate DVA-C02',
-          platform: 'Udemy',
-          year: '2023',
+          category: 'Design',
+          courses: [
+            {
+              title: 'UI/UX Design Specialization',
+              platform: 'Udemy',
+              year: '2023',
+              description:
+                'Applied user-centered design principles to create intuitive interfaces, wireframes, and design systems for web applications.',
+            },
+          ],
         },
       ],
     },
@@ -382,7 +403,7 @@ const translations: Record<Language, Translations> = {
       title: 'Educación y',
       titleHighlight: ' Trayectoria de Aprendizaje',
       formalEducation: 'Educación Formal',
-      coursesTitle: 'Cursos y Certificaciones',
+      coursesTitle: 'Aprendizaje continuo y desarrollo profesional',
       educationData: [
         {
           title: 'Ingeniero en Sistemas Informáticos',
@@ -393,36 +414,56 @@ const translations: Record<Language, Translations> = {
           highlights: ['Proyecto web para facultad'],
         },
       ],
-      coursesData: [
+      coursesCategories: [
         {
-          title: 'React experto',
-          platform: 'Dev/talles',
-          year: '2025',
+          category: 'Desarrollo Frontend',
+          courses: [
+            {
+              title: 'React Expert',
+              platform: 'Dev/talles',
+              year: '2025',
+              description:
+                'Patrones avanzados de React, arquitectura escalable de componentes, manejo de estado global con Zustand y estado del servidor con TanStack Query aplicados en proyectos reales.',
+            },
+            {
+              title: 'React con TypeScript – La guía completa',
+              platform: 'Udemy',
+              year: '2025',
+              description:
+                'Desarrollo de aplicaciones React fuertemente tipadas utilizando componentes reutilizables, tipado estricto y manejo de estado global con Redux Toolkit.',
+            },
+            {
+              title: 'JavaScript Moderno',
+              platform: 'Udemy',
+              year: '2024',
+              description:
+                'Comprensión profunda de las características modernas de JavaScript (ES6+), patrones asíncronos y buenas prácticas de código limpio.',
+            },
+          ],
         },
         {
-          title: 'React con TypeScript – Guía completa',
-          platform: 'Udemy',
-          year: '2025',
+          category: 'Desarrollo Full Stack',
+          courses: [
+            {
+              title: 'Full Stack Node.js – React – TypeScript, Express',
+              platform: 'Udemy',
+              year: '2025',
+              description:
+                'Desarrollo de aplicaciones full stack con APIs REST, autenticación e integración con bases de datos utilizando herramientas modernas de JavaScript.',
+            },
+          ],
         },
         {
-          title: 'Full Stack Node.js – React – TypeScript, Express',
-          platform: 'Udemy',
-          year: '2025',
-        },
-        {
-          title: 'JavaScript Moderno',
-          platform: 'Udemy',
-          year: '2024',
-        },
-        {
-          title: 'Especialización en Diseño UI/UX',
-          platform: 'Udemy',
-          year: '2023',
-        },
-        {
-          title: 'AWS Certified Developer Associate DVA-C02',
-          platform: 'Udemy',
-          year: '2023',
+          category: 'Diseño',
+          courses: [
+            {
+              title: 'Especialización en Diseño UI/UX',
+              platform: 'Udemy',
+              year: '2023',
+              description:
+                'Aplicación de principios de diseño centrado en el usuario para crear interfaces intuitivas, wireframes y sistemas de diseño para aplicaciones web.',
+            },
+          ],
         },
       ],
     },

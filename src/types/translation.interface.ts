@@ -50,10 +50,14 @@ export interface Translations {
       description: string;
       highlights: string[];
     }[];
-    coursesData: {
-      title: string;
-      platform: string;
-      year: string;
+    coursesCategories: {
+      category: string;
+      courses: {
+        title: string;
+        platform: string;
+        year: string;
+        description: string;
+      }[];
     }[];
   };
   // Projects

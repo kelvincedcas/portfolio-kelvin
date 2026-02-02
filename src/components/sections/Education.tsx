@@ -122,7 +122,6 @@ export const Education = () => {
           </div>
         </div>
 
-        {/* Courses Grid */}
         <div>
           <motion.h3
             initial={{ opacity: 0, y: 20 }}
@@ -137,29 +136,43 @@ export const Education = () => {
             {t.education.coursesTitle}
           </motion.h3>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {t.education.coursesData.map((course, index) => (
+          <div className="space-y-8">
+            {t.education.coursesCategories.map((category, categoryIndex) => (
               <motion.div
-                key={course.title}
+                key={category.category}
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.6 + index * 0.08 }}
-                className="group glass-card rounded-2xl p-5 hover-lift cursor-default"
+                transition={{ duration: 0.5, delay: 0.6 + categoryIndex * 0.1 }}
               >
-                <div className="flex items-start gap-4">
-                  <div
-                    className={`w-12 h-12 rounded-xl bg-linear-to-br ${courseColors[index % courseColors.length]} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform`}
-                  >
-                    <BookOpen className="w-6 h-6 text-white" />
-                  </div>
-                  <div className="min-w-0">
-                    <h4 className="font-medium text-sm leading-tight mb-1 line-clamp-2">
-                      {course.title}
-                    </h4>
-                    <p className="text-muted-foreground text-xs">
-                      {course.platform} · {course.year}
-                    </p>
-                  </div>
+                <h4 className="text-lg font-display font-medium mb-4 text-primary">
+                  {category.category}
+                </h4>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                  {category.courses.map((course, courseIndex) => (
+                    <div
+                      key={course.title}
+                      className="group glass-card rounded-2xl p-5 hover-lift cursor-default"
+                    >
+                      <div className="flex items-start gap-4 mb-3">
+                        <div
+                          className={`w-12 h-12 rounded-xl bg-linear-to-br ${courseColors[(categoryIndex * 2 + courseIndex) % courseColors.length]} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform`}
+                        >
+                          <BookOpen className="w-6 h-6 text-white" />
+                        </div>
+                        <div className="min-w-0">
+                          <h5 className="font-medium text-sm leading-tight mb-1">
+                            {course.title}
+                          </h5>
+                          <p className="text-muted-foreground text-xs">
+                            {course.platform} · {course.year}
+                          </p>
+                        </div>
+                      </div>
+                      <p className="text-muted-foreground text-xs leading-relaxed">
+                        {course.description}
+                      </p>
+                    </div>
+                  ))}
                 </div>
               </motion.div>
             ))}
