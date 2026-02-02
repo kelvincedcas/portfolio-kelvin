@@ -77,9 +77,9 @@ const translations: Record<Language, Translations> = {
         {
           title: 'Backend',
           skills: [
-            { name: 'Node.js', level: 88 },
+            { name: 'Node.js', level: 70 },
             { name: 'PostgreSQL', level: 85 },
-            { name: 'GraphQL', level: 78 },
+            { name: 'GraphQL', level: 60 },
           ],
         },
         {
@@ -375,9 +375,9 @@ const translations: Record<Language, Translations> = {
         {
           title: 'Backend',
           skills: [
-            { name: 'Node.js', level: 88 },
+            { name: 'Node.js', level: 70 },
             { name: 'PostgreSQL', level: 85 },
-            { name: 'GraphQL', level: 78 },
+            { name: 'GraphQL', level: 60 },
           ],
         },
         {
