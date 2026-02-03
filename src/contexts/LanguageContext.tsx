@@ -22,7 +22,7 @@ const translations: Record<Language, Translations> = {
       exploreWork: 'Explore My Work',
       letsConnect: "Let's Connect",
       stats: [
-        { value: '1+', label: 'Years Experience' },
+        { value: '2+', label: 'Years Experience' },
         { value: '5+', label: 'Projects Completed' },
         { value: '1+', label: 'Companies worked' },
       ],
@@ -319,7 +319,7 @@ const translations: Record<Language, Translations> = {
       exploreWork: 'Explorar mi trabajo',
       letsConnect: 'Conectemos',
       stats: [
-        { value: '1+', label: 'Años de Experiencia' },
+        { value: '2+', label: 'Años de Experiencia' },
         { value: '5+', label: 'Proyectos Completados' },
         { value: '1+', label: 'Empresas en las que trabajé' },
       ],
