@@ -1,7 +1,5 @@
-import type { Translations } from '@/types/translation.interface';
+import type { Language, Translations } from '@/types/translation.interface';
 import { createContext, useState, type PropsWithChildren } from 'react';
-
-type Language = 'en' | 'es';
 
 const translations: Record<Language, Translations> = {
   en: {

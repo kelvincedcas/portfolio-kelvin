@@ -1,3 +1,5 @@
+export type Language = 'en' | 'es';
+
 export interface Translations {
   // Header
   nav: {

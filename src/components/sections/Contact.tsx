@@ -342,7 +342,7 @@ export const Contact = () => {
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                href="https://drive.google.com/file/d/134_teYyJilSe3l-0YiTUZt-4y7ni_93h/view"
+                href="https://drive.google.com/open?id=1rM4rbsm9kGd-4v_nCX4D5tvrnoD-vZ0Q&usp=drive_fs"
                 className="group inline-flex items-center gap-3 px-6 py-4 rounded-2xl border-2 border-dashed border-border hover:border-primary/50 transition-colors"
               >
                 <div className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center group-hover:bg-primary/10 transition-colors">
