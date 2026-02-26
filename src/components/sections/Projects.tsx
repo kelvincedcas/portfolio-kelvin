@@ -43,7 +43,7 @@ const projectTags = [
   ['React', 'TypeScript', 'Tailwind', 'Vercel serverless', 'Shadcn'],
   ['React', 'Express.js', 'MongoDB', 'Tailwind', 'Resend'],
   ['React', 'Shadcn', 'Motion', 'Tailwind', 'Vercel serverless'],
-  ['React', 'Flowbite', 'Firebase'],
+  ['React', 'Express.js', 'MongoDB', 'Tailwind', 'Resend'],
   ['Figma', 'Prototype'],
   ['JavaScript', 'Tailwind', 'WeatherApp API'],
 ];
