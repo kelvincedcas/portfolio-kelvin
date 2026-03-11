@@ -1,17 +1,14 @@
-import { useRef } from 'react';
 import { Code2, Palette, Lightbulb, Coffee } from 'lucide-react';
-
-import { motion, useInView } from 'motion/react';
+import { motion } from 'motion/react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useIsMobile } from '@/hooks/useIsMobile';
 
 const icons = [Code2, Palette, Lightbulb, Coffee];
 
 const About = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
   const { t } = useLanguage();
   const isMobile = useIsMobile();
+
   return (
     <section id="about" className="section-padding relative overflow-hidden">
       {/* Background Decoration */}
@@ -19,17 +16,19 @@ const About = () => {
         <div className="decorative-blob w-100 h-100 bg-accent/10 top-0 right-0" />
       </div>
 
-      <div className="max-w-6xl mx-auto relative" ref={ref}>
+      <div className="max-w-6xl mx-auto relative">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-120px' }}
+          transition={{ duration: 0.5 }}
           className="text-center mb-20"
         >
           <span className="inline-block px-4 py-1.5 bg-primary/10 rounded-full text-primary text-sm font-medium mb-4">
             {t.about.badge}
           </span>
+
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
             {t.about.title}
             <span className="block gradient-text pb-3">
@@ -39,26 +38,28 @@ const About = () => {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left: Image & Decorative Elements */}
+          {/* LEFT SIDE */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-120px' }}
+            transition={{ duration: 0.55 }}
             className="relative will-change-transform"
           >
-            {/* Main Image Container */}
+            {/* Image Container */}
             <div className="relative aspect-4/5 rounded-3xl overflow-hidden glass-card p-2">
               <div className="w-full h-full rounded-2xl bg-linear-to-br from-primary/5 via-secondary to-accent/5 flex items-center justify-center">
                 <div className="text-center p-8">
                   <div className="size-60 mx-auto mb-6 rounded-full bg-linear-to-br from-primary/20 to-accent/20 flex items-center justify-center border-4 border-background shadow-xl overflow-hidden">
                     <img
-                      loading="eager"
-                      decoding="async"
                       src="/images/profile.webp"
                       alt="profile"
-                      className="object-cover"
+                      loading="eager"
+                      decoding="async"
+                      className="object-cover w-full h-full"
                     />
                   </div>
+
                   <p className="text-muted-foreground text-sm">
                     {t.about.photoPlaceholder}
                   </p>
@@ -68,35 +69,49 @@ const About = () => {
 
             {/* Floating Elements */}
             <motion.div
-              animate={!isMobile ? { y: [0, -15, 0] } : {}}
-              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+              animate={isMobile ? undefined : { y: [0, -12, 0] }}
+              transition={
+                isMobile
+                  ? undefined
+                  : {
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: 'easeInOut',
+                    }
+              }
               className="absolute -top-6 -right-4 w-24 h-24 rounded-2xl glass-card flex items-center justify-center"
             >
               <span className="text-4xl">🚀</span>
             </motion.div>
 
             <motion.div
-              animate={!isMobile ? { y: [0, 10, 0] } : {}}
-              transition={{
-                duration: 3.5,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
+              animate={isMobile ? undefined : { y: [0, 10, 0] }}
+              transition={
+                isMobile
+                  ? undefined
+                  : {
+                      duration: 3.5,
+                      repeat: Infinity,
+                      ease: 'easeInOut',
+                    }
+              }
               className="absolute -bottom-4 -left-4 w-32 h-20 rounded-2xl glass-card flex items-center justify-center gap-2"
             >
               <span className="text-lg">💻</span>
               <span className="text-sm font-medium">{t.about.coding}</span>
             </motion.div>
 
-            {/* Decorative Shapes */}
+            {/* Decorative Shape */}
             <div className="absolute -z-10 -bottom-8 -right-8 w-full h-full rounded-3xl bg-linear-to-br from-primary/10 to-accent/10" />
           </motion.div>
 
-          {/* Right: Content */}
+          {/* RIGHT SIDE */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-120px' }}
+            transition={{ duration: 0.55, delay: 0.1 }}
+            className="will-change-transform"
           >
             <div className="space-y-6 text-lg text-muted-foreground leading-relaxed mb-10">
               {t.about.paragraphs.map((paragraph, index) => (
@@ -115,22 +130,29 @@ const About = () => {
             <div className="grid sm:grid-cols-2 gap-4">
               {t.about.highlights.map((item, index) => {
                 const Icon = icons[index];
+
                 return (
                   <motion.div
                     key={item.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
-                    className="group p-4 rounded-2xl bg-secondary/50 hover:bg-secondary transition-colors"
+                    initial={{ opacity: 0, y: 18 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{
+                      duration: 0.4,
+                      delay: 0.15 + index * 0.08,
+                    }}
+                    className="group p-4 rounded-2xl bg-secondary/50 hover:bg-secondary transition-colors will-change-transform"
                   >
                     <div className="flex items-start gap-4">
                       <div className="w-14 h-10 rounded-md bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                         <Icon className="w-5 h-5 text-primary" />
                       </div>
+
                       <div>
                         <h4 className="font-semibold text-sm mb-1">
                           {item.title}
                         </h4>
+
                         <p className="text-xs text-muted-foreground">
                           {item.description}
                         </p>
