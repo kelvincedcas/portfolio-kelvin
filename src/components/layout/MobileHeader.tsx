@@ -31,7 +31,7 @@ export const MobileHeader = () => {
         className="
         fixed top-0 left-0 right-0 z-50
         bg-background/60
-        backdrop-blur-xl  
+        backdrop-blur-md  
         border-b border-border/50
         py-3
       "

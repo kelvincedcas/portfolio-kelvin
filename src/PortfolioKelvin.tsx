@@ -1,7 +1,6 @@
 import { Toaster } from 'sonner';
 import { Footer } from './components/layout/Footer';
 import { Header } from './components/layout/Header';
-import { About } from './components/sections/About';
 import { Contact } from './components/sections/Contact';
 import { Education } from './components/sections/Education';
 import { Hero } from './components/sections/Hero';
@@ -10,6 +9,7 @@ import { lazy, Suspense } from 'react';
 
 const Projects = lazy(() => import('./components/sections/Projects'));
 const Skills = lazy(() => import('./components/sections/Skills'));
+const About = lazy(() => import('./components/sections/About'));
 
 export const PortfolioKelvin = () => {
   return (
@@ -18,7 +18,9 @@ export const PortfolioKelvin = () => {
       <Header />
       <main>
         <Hero />
-        <About />
+        <Suspense fallback={null}>
+          <About />
+        </Suspense>
         <Suspense fallback={null}>
           <Skills />
         </Suspense>

@@ -3,13 +3,15 @@ import { Code2, Palette, Lightbulb, Coffee } from 'lucide-react';
 
 import { motion, useInView } from 'motion/react';
 import { useLanguage } from '@/hooks/useLanguage';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 const icons = [Code2, Palette, Lightbulb, Coffee];
 
-export const About = () => {
+const About = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const { t } = useLanguage();
+  const isMobile = useIsMobile();
   return (
     <section id="about" className="section-padding relative overflow-hidden">
       {/* Background Decoration */}
@@ -42,7 +44,7 @@ export const About = () => {
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
+            className="relative will-change-transform"
           >
             {/* Main Image Container */}
             <div className="relative aspect-4/5 rounded-3xl overflow-hidden glass-card p-2">
@@ -50,7 +52,7 @@ export const About = () => {
                 <div className="text-center p-8">
                   <div className="size-60 mx-auto mb-6 rounded-full bg-linear-to-br from-primary/20 to-accent/20 flex items-center justify-center border-4 border-background shadow-xl overflow-hidden">
                     <img
-                      loading="lazy"
+                      loading="eager"
                       decoding="async"
                       src="/images/profile.webp"
                       alt="profile"
@@ -66,15 +68,15 @@ export const About = () => {
 
             {/* Floating Elements */}
             <motion.div
-              animate={{ y: [0, -15, 0] }}
+              animate={!isMobile ? { y: [0, -15, 0] } : {}}
               transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute -top-6 -right-6 w-24 h-24 rounded-2xl glass-card flex items-center justify-center"
+              className="absolute -top-6 -right-4 w-24 h-24 rounded-2xl glass-card flex items-center justify-center"
             >
               <span className="text-4xl">🚀</span>
             </motion.div>
 
             <motion.div
-              animate={{ y: [0, 10, 0] }}
+              animate={!isMobile ? { y: [0, 10, 0] } : {}}
               transition={{
                 duration: 3.5,
                 repeat: Infinity,
@@ -144,3 +146,5 @@ export const About = () => {
     </section>
   );
 };
+
+export default About;
