@@ -17,153 +17,128 @@ export const MobileHeader = () => {
     { label: t.nav.contact, href: '#contact' },
   ];
 
+  const toggleMenu = () => setIsMenuOpen((prev) => !prev);
+
   return (
     <motion.header
-      initial={{ opacity: 0, y: -14 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{
-        duration: 0.3,
-        ease: 'easeOut',
-      }}
-      className="will-change-transform"
-    >
-      <header
-        className="
-        fixed top-0 left-0 right-0 z-50
-        bg-background/70
-        backdrop-blur-md
-        border-b border-border/50
-        py-3
+      initial={{ y: -40, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.35 }}
+      className="
+      fixed top-0 left-0 right-0
+      z-50
+      bg-background/80
+      backdrop-blur-md
+      border-b border-border/50
+      will-change-transform
       "
-      >
-        <nav className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-          {/* Logo */}
-          <a href="#" className="font-display text-lg font-bold gradient-text">
-            Kelvin.dev {'{ }'}
-          </a>
+    >
+      {/* top bar */}
+      <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
+        <a href="#" className="font-display text-lg font-bold gradient-text">
+          Kelvin.dev {'{ }'}
+        </a>
 
-          {/* Controls */}
-          <div className="flex items-center gap-2">
-            {/* Language */}
-            <button
-              onClick={() => setLanguage(language === 'en' ? 'es' : 'en')}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-secondary/50 hover:bg-secondary transition-colors"
-              aria-label="Toggle language"
-            >
-              <Globe className="w-5 h-5" />
-              <span className="text-xs font-semibold uppercase w-6 text-center">
-                {language}
-              </span>
-            </button>
+        <div className="flex items-center gap-2">
+          {/* language */}
+          <button
+            onClick={() => setLanguage(language === 'en' ? 'es' : 'en')}
+            className="flex items-center gap-1 px-3 py-2 rounded-xl bg-secondary/60 hover:bg-secondary transition-colors"
+          >
+            <Globe className="w-5 h-5" />
+            <span className="text-xs font-semibold uppercase">{language}</span>
+          </button>
 
-            {/* Theme */}
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-xl bg-secondary/50 hover:bg-secondary transition-colors"
-              aria-label="Toggle theme"
-            >
-              {theme === 'dark' ? (
-                <Sun className="w-5 h-5" />
-              ) : (
-                <Moon className="w-5 h-5" />
-              )}
-            </button>
+          {/* theme */}
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-xl bg-secondary/60 hover:bg-secondary transition-colors"
+          >
+            {theme === 'dark' ? (
+              <Sun className="w-5 h-5" />
+            ) : (
+              <Moon className="w-5 h-5" />
+            )}
+          </button>
 
-            {/* Menu */}
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="w-10 h-10 flex items-center justify-center rounded-xl bg-secondary/60 hover:bg-secondary transition-colors"
-              aria-label="Toggle menu"
-            >
-              {isMenuOpen ? (
-                <X className="w-5 h-5" />
-              ) : (
-                <Menu className="w-5 h-5" />
-              )}
-            </button>
-          </div>
-        </nav>
+          {/* menu button */}
+          <button
+            onClick={toggleMenu}
+            className="w-10 h-10 flex items-center justify-center rounded-xl bg-secondary/60 hover:bg-secondary transition-colors"
+          >
+            {isMenuOpen ? (
+              <X className="w-5 h-5" />
+            ) : (
+              <Menu className="w-5 h-5" />
+            )}
+          </button>
+        </div>
+      </div>
 
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, scaleY: 0.95 }}
-              animate={{ opacity: 1, scaleY: 1 }}
-              exit={{ opacity: 0, scaleY: 0.95 }}
-              transition={{ duration: 0.22, ease: 'easeOut' }}
-              style={{ transformOrigin: 'top' }}
-              className="
-              bg-background/95
-              backdrop-blur-md
-              border-t border-border
-              overflow-hidden
-              mt-3
-              will-change-transform
-              "
-            >
-              <ul className="px-6 py-6 space-y-2">
-                {navItems.map((item, index) => (
-                  <motion.li
-                    key={item.href}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{
-                      duration: 0.18,
-                      delay: index * 0.03,
-                    }}
-                  >
-                    <a
-                      href={item.href}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setIsMenuOpen(false);
-
-                        requestAnimationFrame(() => {
-                          const target = document.querySelector(item.href);
-                          target?.scrollIntoView({ behavior: 'smooth' });
-                        });
-                      }}
-                      className="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-secondary transition-colors"
-                    >
-                      {item.label}
-                    </a>
-                  </motion.li>
-                ))}
-
-                {/* CTA */}
+      {/* mobile menu */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.25 }}
+            className="
+            border-t border-border
+            bg-background/95
+            backdrop-blur-md
+            "
+          >
+            <ul className="px-6 py-6 space-y-2">
+              {navItems.map((item, index) => (
                 <motion.li
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: navItems.length * 0.03 }}
-                  className="pt-4"
+                  key={item.href}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.05 }}
                 >
                   <a
-                    href="#contact"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setIsMenuOpen(false);
-
-                      requestAnimationFrame(() => {
-                        document
-                          .querySelector('#contact')
-                          ?.scrollIntoView({ behavior: 'smooth' });
-                      });
-                    }}
+                    href={item.href}
+                    onClick={() => setIsMenuOpen(false)}
                     className="
-                    block w-full px-4 py-3 rounded-xl
-                    text-center font-medium text-primary-foreground
+                    block px-4 py-3
+                    rounded-xl
+                    text-lg font-medium
+                    hover:bg-secondary
+                    transition-colors
                     "
-                    style={{ background: 'var(--gradient-primary)' }}
                   >
-                    {t.nav.getInTouch}
+                    {item.label}
                   </a>
                 </motion.li>
-              </ul>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </header>
+              ))}
+
+              <motion.li
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: navItems.length * 0.05 }}
+                className="pt-4"
+              >
+                <a
+                  href="#contact"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="
+                  block w-full
+                  text-center
+                  px-4 py-3
+                  rounded-xl
+                  font-medium
+                  text-primary-foreground
+                  "
+                  style={{ background: 'var(--gradient-primary)' }}
+                >
+                  {t.nav.getInTouch}
+                </a>
+              </motion.li>
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 };
