@@ -3,15 +3,11 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { motion } from 'motion/react';
 import { useIsMobile } from '@/hooks/useIsMobile';
 
-/**
- * SAFE animation presets
- * Only opacity + transform
- */
 const fadeUp = (isMobile: boolean) => ({
   initial: {
     opacity: 0,
-    y: isMobile ? 12 : 28,
-    scale: isMobile ? 0.97 : 1,
+    y: isMobile ? 10 : 24,
+    scale: isMobile ? 0.98 : 1,
   },
   animate: {
     opacity: 1,
@@ -34,37 +30,42 @@ export const Hero = () => {
       {/* Decorative Background */}
       <div className="absolute inset-0 pointer-events-none">
         <div
-          className={`decorative-blob w-150 h-150 bg-primary/20 -top-48 -right-48 ${
+          className={`decorative-blob w-150 h-150 bg-primary/20 -top-48 -right-48 will-change-transform ${
             !isMobile ? 'animate-float' : ''
           }`}
         />
+
         <div
-          className={`decorative-blob w-125 h-125 bg-accent/20 -bottom-32 -left-32 ${
+          className={`decorative-blob w-125 h-125 bg-accent/20 -bottom-32 -left-32 will-change-transform ${
             !isMobile ? 'animate-float-delayed' : ''
           }`}
         />
+
         {!isMobile && (
           <>
             <div className="decorative-blob w-75 h-75 bg-primary/10 top-1/3 left-1/4 animate-pulse-slow" />
+
             <div
               className="absolute inset-0 opacity-[0.02]"
               style={{
                 backgroundImage: `
-                  linear-gradient(hsl(var(--foreground)) 1px, transparent 1px),
-                  linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)
-                `,
+                linear-gradient(hsl(var(--foreground)) 1px, transparent 1px),
+                linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)
+              `,
                 backgroundSize: '60px 60px',
               }}
             />
+
             <motion.div
               animate={{ rotate: 360 }}
-              transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
-              className="absolute top-20 right-20 w-32 h-32 border border-primary/10 rounded-full"
+              transition={{ duration: 80, repeat: Infinity, ease: 'linear' }}
+              className="absolute top-20 right-20 w-32 h-32 border border-primary/10 rounded-full will-change-transform"
             />
+
             <motion.div
               animate={{ rotate: -360 }}
-              transition={{ duration: 45, repeat: Infinity, ease: 'linear' }}
-              className="absolute bottom-32 left-20 w-24 h-24 border border-accent/10 rounded-2xl"
+              transition={{ duration: 65, repeat: Infinity, ease: 'linear' }}
+              className="absolute bottom-32 left-20 w-24 h-24 border border-accent/10 rounded-2xl will-change-transform"
             />
           </>
         )}
@@ -75,10 +76,10 @@ export const Hero = () => {
         <motion.div
           {...fadeUp(isMobile)}
           transition={{
-            duration: isMobile ? 0.45 : 0.7,
+            duration: isMobile ? 0.4 : 0.6,
             ease: [0.22, 1, 0.36, 1],
           }}
-          className="inline-flex items-center gap-2 px-4 py-2 bg-card rounded-full border border-border mb-8 shadow-soft"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-card rounded-full border border-border mb-8 shadow-soft will-change-transform"
         >
           <Sparkles className="w-4 h-4 text-primary" />
           <span className="text-sm font-medium">{t.hero.available}</span>
@@ -88,11 +89,11 @@ export const Hero = () => {
         <motion.h1
           {...fadeUp(isMobile)}
           transition={{
-            duration: isMobile ? 0.55 : 0.9,
-            delay: isMobile ? 0.06 : 0.2,
+            duration: isMobile ? 0.5 : 0.8,
+            delay: isMobile ? 0.05 : 0.18,
             ease: [0.22, 1, 0.36, 1],
           }}
-          className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6"
+          className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6 will-change-transform"
         >
           <span className="block">{t.hero.greeting}</span>
           <span className="block mt-2 gradient-text">Kelvin.dev {'{ }'}</span>
@@ -102,20 +103,21 @@ export const Hero = () => {
         <motion.div
           {...fade}
           transition={{
-            duration: isMobile ? 0.35 : 0.45,
-            delay: isMobile ? 0.12 : 0.3,
+            duration: 0.35,
+            delay: isMobile ? 0.1 : 0.25,
           }}
           className="flex flex-wrap items-center justify-center gap-3 mb-8"
         >
           {t.hero.roles.map((role, index) => (
             <motion.span
-              {...fade}
-              transition={{
-                duration: isMobile ? 0.35 : 0.45,
-                delay: isMobile ? index * 0.15 : index * 0.3,
-              }}
               key={role}
-              className="px-4 py-2 bg-secondary rounded-full text-sm font-medium text-muted-foreground"
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.35,
+                delay: index * (isMobile ? 0.08 : 0.18),
+              }}
+              className="px-4 py-2 bg-secondary rounded-full text-sm font-medium text-muted-foreground will-change-transform"
             >
               {role}
             </motion.span>
@@ -126,8 +128,8 @@ export const Hero = () => {
         <motion.p
           {...fade}
           transition={{
-            duration: isMobile ? 0.4 : 0.45,
-            delay: isMobile ? 0.18 : 0.4,
+            duration: 0.4,
+            delay: isMobile ? 0.16 : 0.35,
           }}
           className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed"
         >
@@ -138,8 +140,8 @@ export const Hero = () => {
         <motion.div
           {...fade}
           transition={{
-            duration: isMobile ? 0.4 : 0.45,
-            delay: isMobile ? 0.24 : 0.5,
+            duration: 0.4,
+            delay: isMobile ? 0.22 : 0.45,
           }}
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
@@ -152,6 +154,7 @@ export const Hero = () => {
               {t.hero.exploreWork}
               <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
             </span>
+
             <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors" />
           </a>
 
@@ -167,8 +170,8 @@ export const Hero = () => {
         <motion.div
           {...fade}
           transition={{
-            duration: isMobile ? 0.4 : 0.45,
-            delay: isMobile ? 0.3 : 0.6,
+            duration: 0.4,
+            delay: isMobile ? 0.28 : 0.55,
           }}
           className="grid grid-cols-3 gap-8 max-w-lg mx-auto mt-20"
         >
@@ -190,21 +193,22 @@ export const Hero = () => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 1 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2"
         >
           <motion.div
             animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="flex flex-col items-center gap-2 text-muted-foreground"
+            transition={{ duration: 2.2, repeat: Infinity }}
+            className="flex flex-col items-center gap-2 text-muted-foreground will-change-transform"
           >
             <span className="text-xs uppercase tracking-widest">
               {t.hero.scroll}
             </span>
+
             <div className="w-6 h-10 border-2 border-muted-foreground/30 rounded-full flex justify-center pt-2">
               <motion.div
                 animate={{ y: [0, 12, 0], opacity: [1, 0.3, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
+                transition={{ duration: 2.2, repeat: Infinity }}
                 className="w-1.5 h-1.5 bg-primary rounded-full"
               />
             </div>

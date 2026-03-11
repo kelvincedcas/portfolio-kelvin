@@ -19,19 +19,19 @@ export const MobileHeader = () => {
 
   return (
     <motion.header
-      initial={{ opacity: 0, y: -16 }}
+      initial={{ opacity: 0, y: -14 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{
-        duration: 0.35,
+        duration: 0.3,
         ease: 'easeOut',
-        delay: 0.2,
       }}
+      className="will-change-transform"
     >
       <header
         className="
         fixed top-0 left-0 right-0 z-50
-        bg-background/60
-        backdrop-blur-md  
+        bg-background/70
+        backdrop-blur-md
         border-b border-border/50
         py-3
       "
@@ -84,35 +84,45 @@ export const MobileHeader = () => {
           </div>
         </nav>
 
-        {/* Mobile Menu (ANIMADO) */}
+        {/* Mobile Menu */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.25, ease: 'easeOut' }}
-              className="bg-background/95 backdrop-blur-xl border-t border-border overflow-hidden mt-3"
+              initial={{ opacity: 0, scaleY: 0.95 }}
+              animate={{ opacity: 1, scaleY: 1 }}
+              exit={{ opacity: 0, scaleY: 0.95 }}
+              transition={{ duration: 0.22, ease: 'easeOut' }}
+              style={{ transformOrigin: 'top' }}
+              className="
+              bg-background/95
+              backdrop-blur-md
+              border-t border-border
+              overflow-hidden
+              mt-3
+              will-change-transform
+              "
             >
               <ul className="px-6 py-6 space-y-2">
                 {navItems.map((item, index) => (
                   <motion.li
                     key={item.href}
-                    initial={{ opacity: 0, x: -16 }}
+                    initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05 }}
+                    transition={{
+                      duration: 0.18,
+                      delay: index * 0.03,
+                    }}
                   >
                     <a
                       href={item.href}
                       onClick={(e) => {
                         e.preventDefault();
                         setIsMenuOpen(false);
-                        setTimeout(() => {
+
+                        requestAnimationFrame(() => {
                           const target = document.querySelector(item.href);
-                          if (target) {
-                            target.scrollIntoView({ behavior: 'smooth' });
-                          }
-                        }, 80);
+                          target?.scrollIntoView({ behavior: 'smooth' });
+                        });
                       }}
                       className="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-secondary transition-colors"
                     >
@@ -123,9 +133,9 @@ export const MobileHeader = () => {
 
                 {/* CTA */}
                 <motion.li
-                  initial={{ opacity: 0, y: 10 }}
+                  initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: navItems.length * 0.05 }}
+                  transition={{ delay: navItems.length * 0.03 }}
                   className="pt-4"
                 >
                   <a
@@ -134,16 +144,16 @@ export const MobileHeader = () => {
                       e.preventDefault();
                       setIsMenuOpen(false);
 
-                      setTimeout(() => {
+                      requestAnimationFrame(() => {
                         document
                           .querySelector('#contact')
                           ?.scrollIntoView({ behavior: 'smooth' });
-                      }, 80);
+                      });
                     }}
                     className="
                     block w-full px-4 py-3 rounded-xl
                     text-center font-medium text-primary-foreground
-                  "
+                    "
                     style={{ background: 'var(--gradient-primary)' }}
                   >
                     {t.nav.getInTouch}
