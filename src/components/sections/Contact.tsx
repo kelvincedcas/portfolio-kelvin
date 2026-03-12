@@ -7,6 +7,7 @@ import {
   Github,
   Instagram,
   BadgeX,
+  X,
 } from 'lucide-react';
 
 import { motion, useInView, AnimatePresence } from 'motion/react';
@@ -174,10 +175,21 @@ export const Contact = () => {
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -8 }}
                     transition={{ duration: 0.25 }}
-                    className="bg-[#FEE2E2] px-3 py-4 text-[#7F1D1D] dark:text-[#FCA5A5] rounded-lg mb-4 flex gap-2 items-center dark:bg-[#2A1215] border border-[#EF4444] dark:border-[#E5484D]"
+                    className="bg-[#FEE2E2] px-3 py-4 text-[#7F1D1D] dark:text-[#FCA5A5] rounded-lg mb-4 flex gap-2 items-center dark:bg-[#2A1215] border border-[#EF4444] dark:border-[#E5484D] justify-between"
                   >
-                    <BadgeX className="size-5 dark:text-[#E5484D]" />
-                    <p>{t.contact.errorForm}</p>
+                    <div className="flex gap-2">
+                      <BadgeX className="size-5 dark:text-[#E5484D]" />
+                      <p>{t.contact.errorForm}</p>
+                    </div>
+                    <button
+                      className="bg-[#ffb7b7] rounded-md p-1 hover:bg-[#e49494] transition-colors duration-200 dark:bg-[#571119] dark:text-[#FCA5A5] cursor-pointer dark:hover:bg-[#721923]"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setFormSubmitted(false);
+                      }}
+                    >
+                      <X />
+                    </button>
                   </motion.div>
                 )}
               </AnimatePresence>
