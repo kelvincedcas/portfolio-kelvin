@@ -248,7 +248,7 @@ export const Contact = () => {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full py-4 rounded-xl font-medium text-primary-foreground flex items-center justify-center gap-2 hover:opacity-90 transition-opacity cursor-pointer"
+                  className="w-full py-4 rounded-xl font-medium text-primary-foreground flex items-center justify-center gap-2 hover:opacity-90 transition-opacity cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                   style={{ background: 'var(--gradient-primary)' }}
                 >
                   {isLoading ? (
